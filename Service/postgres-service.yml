@@ -1,0 +1,13 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: postgres-service
+spec:
+  selector:
+    app: gitlab-postgres
+  type: NodePort
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 5432
+    nodePort: 31072
