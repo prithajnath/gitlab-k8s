@@ -1,0 +1,13 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: meteor-service
+spec:
+  selector:
+    app: meteor
+  type: NodePort
+  ports:
+  - protocol: TCP
+    port: 8080
+    targetPort: 5432
+    nodePort: 31272

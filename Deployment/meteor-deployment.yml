@@ -1,0 +1,24 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: meteor
+spec:
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        name: meteor
+    spec:
+      containers:
+      - name: meteor        
+        image: chees/meteor-gke-example:latest
+        ports:
+        - containerPort: 9770
+        volumeMounts:
+        - mountPath: /var/lib/meteor
+          name: meteor-pv
+      volumes:
+      - name: meteor-pv
+        persistentVolumeClaim:
+           claimName: meteor-pvc
+      restartPolicy: Always
